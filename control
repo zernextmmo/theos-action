@@ -1,0 +1,9 @@
+Package: com.zernext.fbtool
+Name: FB Auto Tool
+Depends: mobilesubstrate
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Menu up bai Facebook
+Maintainer: zernextmmo
+Author: zernextmmo
+Section: Tweaks
