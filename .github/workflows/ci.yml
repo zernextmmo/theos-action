@@ -1,9 +1,5 @@
 name: CI
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+on: [workflow_dispatch, push]
 
 jobs:
   build:
@@ -17,10 +13,11 @@ jobs:
 
       - name: Build Tweak
         run: |
-          make package FINALPACKAGE=1
+          export THEOS_DEVICE_IP=127.0.0.1
+          make package FINALPACKAGE=1 ARCHS="arm64"
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: FBAutoTool
+          name: FBAutoTool-Package
           path: packages/*.deb
