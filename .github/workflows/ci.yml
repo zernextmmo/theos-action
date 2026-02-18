@@ -9,15 +9,21 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Theos
-        uses: Randomblock1/theos-action@v1
+        uses: resources/setup-theos@v1
+
+      - name: Setup iOS SDK
+        run: |
+          mkdir -p $THEOS/sdks
+          curl -LO https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz
+          tar -xf iPhoneOS14.5.sdk.tar.xz -C $THEOS/sdks
+          rm iPhoneOS14.5.sdk.tar.xz
 
       - name: Build Tweak
         run: |
-          export THEOS_DEVICE_IP=127.0.0.1
           make package FINALPACKAGE=1 ARCHS="arm64"
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: FBAutoTool-Package
+          name: FBAutoTool-Result
           path: packages/*.deb
