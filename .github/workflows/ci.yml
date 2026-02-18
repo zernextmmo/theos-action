@@ -11,7 +11,7 @@ jobs:
       - name: Setup Theos
         uses: resources/setup-theos@v1
 
-      - name: Setup iOS SDK
+      - name: Download iOS SDK
         run: |
           mkdir -p $THEOS/sdks
           curl -LO https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz
@@ -25,5 +25,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: FBAutoTool-Result
+          name: FBAutoTool-Final
           path: packages/*.deb
